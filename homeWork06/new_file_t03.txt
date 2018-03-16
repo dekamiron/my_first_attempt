@@ -1,0 +1,4 @@
+Vasya Petrov male 29
+Masha Sidorova female 22
+Petya Ivanov male 21
+Katya Fox female 25
