@@ -11,25 +11,19 @@ def leaving():
     a.leave_dir()
     file_man()
 
-# управляет работой файлового мененджера и возможностью перехода в другую дерикторию
+# предлагает выход
 def navigation():
-    l = input("sorry, i can't do it, continue? Y/N: ")
+    l = input("sorry, i can't do it, continue?(N - exit) Y/N: ")
     if l == 'Y':
         file_man()
     elif l == 'N':
-        n = input('change directory(NO - Exit)? Y/N: ')
-        if n == 'Y':
-            leaving()
-        elif n == 'N':
-            exit()
-        else:
-            pass
+        exit()
     else:
         navigation()
 
 # позволяет копировать, создавать, удалять и переименовывать файлы
 def file_man():
-    com = input('what we will be do with files?(copy - c, new - n, del - d, rename - r): ')
+    com = input('what we will be do?(copy - c, new - n, del - d, rename - r, leave dir - l): ')
     if com == 'r':
         a.ren_f()
         file_man()
@@ -42,6 +36,8 @@ def file_man():
     elif com == 'd':
         a.del_f()
         file_man()
+    elif com == 'l':
+        leaving()
     else:
         navigation()
 
