@@ -8,10 +8,9 @@ from fun import my_fun_for_task05 as a
 
 # переход в другую деректорию, заново запрашивает работу с файлами
 def leaving():
-    a.leave_dir()
-    file_man()
+    a.leave_dir(), file_man()
 
-# предлагает выход
+# управляет работой файлового мененджера и возможностью перехода в другую дерикторию
 def navigation():
     l = input("sorry, i can't do it, continue?(N - exit) Y/N: ")
     if l == 'Y':
@@ -23,19 +22,15 @@ def navigation():
 
 # позволяет копировать, создавать, удалять и переименовывать файлы
 def file_man():
-    com = input('what we will be do?(copy - c, new - n, del - d, rename - r, leave dir - l): ')
+    com = input('what we will be do with files?(copy - c, new - n, del - d, rename - r, leave dir - l): ')
     if com == 'r':
-        a.ren_f()
-        file_man()
+        a.ren_f(), file_man()
     elif com == 'c':
-        a.copy_f()
-        file_man()
+        a.copy_f(), file_man()
     elif com == 'n':
-        a.make_f()
-        file_man()
+        a.make_f(), file_man()
     elif com == 'd':
-        a.del_f()
-        file_man()
+        a.del_f(), file_man()
     elif com == 'l':
         leaving()
     else:
