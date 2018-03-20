@@ -1,0 +1,3 @@
+Vasya Petrov male 45
+Fedya Smirnov male 33
+Masha Zimbelman female 32
