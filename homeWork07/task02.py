@@ -19,21 +19,10 @@ def my_search(my_d, search):
         else:
             pass
 
-# запрашивает формат базы данных и работает с ним
-def start_work(data_format):
-    if data_format == 'txt':
-        my_file = open('new_file_t02', 'r+')
-        new_dict1 = my_new_dict(my_file)
-        print(new_dict1)
-
-        your_search = input('введите ключевое слово для поиска(name, second name, sex, age): ')
-        my_search(new_dict1, your_search)
-    elif data_format == 'json':
-        pass '''my_file_j = open('new_file_t02', 'r+')
-        реализовать работу с форматом json'''
-    else:
-        print('unknown format')
-        
-your_format = input('введите формат базы данных txt, json: ')
-
-start_work(your_format)
+new_d = []
+my_js = open('new_file_t02_j.js', 'r+')
+for i in my_js:
+    new_d.append(json.load(i))
+    
+your_word = input('enter your word for searching: ')
+my_search(new_d, your_word)
