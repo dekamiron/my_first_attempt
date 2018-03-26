@@ -1,0 +1,3 @@
+Time work: 0.001002
+name function: sum_numb
+args function: 5 6
