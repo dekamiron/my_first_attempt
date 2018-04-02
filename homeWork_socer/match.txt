@@ -1,1 +1,0 @@
-{"id_match": "1", "date": "04.02.2018", "location": "Minesota", "result": "33-41", "team1": "Patriots", "team2": "Eagles"}
