@@ -1,10 +1,6 @@
 '''
 Требуется написать программу для генерации и проверки контрольных сумм у файлов. Входные данные
 Файл-манифест – текстовый файл, в котором содержится информация о контрольных суммах для некоторого набора файлов.
-Структура:
-<имя_файла_1>:<контрольная_сумма_для_файла_1>
-<имя_файла_2>:<контрольная_сумма_для_файла_2>
-<имя_файла_3>:<контрольная_сумма_для_файла_3>
 
 Задание
 Сама программа должна иметь возможность работы в двух режимах:
@@ -20,28 +16,12 @@
 и выдать в консоль результат о совпадении (ОК) или несовпадении (FAILED) значений.
 Режим работы программы задается ключом, переданным как аргумент командной строки. Для первого режима можно использовать
 ключ --calc, для второго — --check.
-
-Пример запуска
-checksum.py --calc <имя_файла_1> ... <имя_файла_N>
-
-Вывод:
-checksum for <имя_файла_1> calculated
-...
-checksum for <имя_файла_N> calculated
-
-Проверка целостности файлов.
-<название_бинарника> --check <имя_файла_манифеста>
-
-Вывод:
-<имя_файла_1> : <OK/FAILED>
-...
-<имя_файла_N> : <OK/FAILED>
 '''
 from hashlib import md5
-import os, sys, getopt, argparse
+import os, sys
 
 
-def my_hash_fun(file_name):
+def my_hash_fun(file_name): # this function counts hash
     with open(file_name) as f:
         all_hash = md5(''.encode())
         for line in f:
@@ -49,7 +29,7 @@ def my_hash_fun(file_name):
     return all_hash.hexdigest()
 
 
-def my_files():
+def my_files(): # this function loads all 'txt' files and make dict {name:hash}
     path = 'D:/python/задачи/manifest/files'
     all_file = os.listdir(path)
     hash_dic = {}
@@ -59,12 +39,12 @@ def my_files():
     return hash_dic
 
 
-def write_manifest():
+def write_manifest(): # writing in manifest
     with open('manifest1.txt', 'r+') as man:
         man.write(str(my_files()))
 
 
-def test_change():
+def test_change(): # check for file changes
     new_dic = my_files()
     with open('manifest1.txt', 'r+') as saved_dict:
         str_file = saved_dict.read()
@@ -75,19 +55,15 @@ def test_change():
         else:
             print(key + ' FAILED')
 
-def createParser():
-    parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest='command')
 
-    hello_parser = subparsers.add_parser('calc')
-    hello_parser.add_argument('--calc')
-
-    goodbye_parser = subparsers.add_parser('goodbye')
-    goodbye_parser.add_argument('-c')
-
-    return parser
-
-
-#my_files()
-#write_manifest()
-#test_change()
+if __name__ == '__main__':
+    try:
+        a = sys.argv[1]
+        if a == "--calc":
+            print('hash in your file', my_files())
+        elif a == "--check":
+            test_change()
+        else:
+            print('check your argument(--calc or --check)')
+    except IndexError:
+        print('you have to enter arg \'--calc\' or \'--check\'')
